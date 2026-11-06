@@ -3,70 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUNNY FX | Premium Edits & CC</title>
-    <!-- Importing Modern Gaming Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>BUNNY FX | Premium CC & Quality</title>
+    <!-- Premium Fonts: Rajdhani for Esports look, Inter for readability -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Base & Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Base & Variables */
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --accent: #ff0844;
+            --bg-color: #050505;
+            --surface: #121212;
         }
-        body {
-            background-color: #050505;
-            background-image: radial-gradient(circle at top right, #2b0b3f, #050505 50%), 
-                              radial-gradient(circle at bottom left, #1a0033, #050505 50%);
-            color: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        h1, h2, h3, .logo {
-            font-family: 'Orbitron', sans-serif;
+        body {
+            background-color: var(--bg-color);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Glassmorphism Effect */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        h1, h2, h3, .logo { font-family: 'Rajdhani', sans-serif; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
+
+        /* Animated Background Particles/Glow */
+        .bg-glow {
+            position: fixed;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.05), transparent 60%);
+            animation: pulse-bg 10s infinite alternate;
+            z-index: -1;
+            pointer-events: none;
         }
 
-        /* Gradient Text */
-        .fx-text {
-            background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
-            background: linear-gradient(to right, #b92b27, #1565C0);
-            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        @keyframes pulse-bg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
         }
 
-        /* Navigation */
+        /* Navbar */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5% ;
-            position: sticky;
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
+        
         .logo {
-            font-size: 28px;
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px rgba(240, 147, 251, 0.5);
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            animation: logo-glow 3s infinite alternate;
         }
+
+        @keyframes logo-glow {
+            0% { text-shadow: 0 0 10px rgba(0, 242, 254, 0.2); }
+            100% { text-shadow: 0 0 20px rgba(0, 242, 254, 0.6); }
+        }
+
         nav a {
-            color: #ddd;
+            color: #ccc;
             text-decoration: none;
             margin: 0 15px;
             font-size: 14px;
@@ -75,278 +91,367 @@
             letter-spacing: 1px;
             transition: 0.3s;
         }
-        nav a:hover {
-            color: #f093fb;
-            text-shadow: 0 0 10px #f093fb;
-        }
+        nav a:hover { color: var(--primary); }
 
         /* Hero Section */
         .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 120px 20px 80px;
+            padding: 0 20px;
         }
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: slideUp 1s cubic-bezier(0.1, 0.8, 0.2, 1);
         }
         .hero p {
             font-size: 1.2rem;
-            color: #aaa;
+            color: #888;
             max-width: 600px;
-            margin: 0 auto;
+            animation: slideUp 1.2s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* Scroll Animations (Reveals) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.1, 0.8, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Sections */
         .section {
-            padding: 60px 20px;
-            max-width: 1100px;
+            padding: 100px 20px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            letter-spacing: 2px;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            letter-spacing: 3px;
             color: #fff;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
 
-        /* Previews Container */
+        /* Image & Video Cards */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
-        
+
         .card {
+            background: var(--surface);
+            border-radius: 16px;
             padding: 20px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s ease;
+        }
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 242, 254, 0.15);
+        }
+
+        .media-box {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            background: #000;
+        }
+
+        .badge {
+            position: absolute;
+            top: 35px;
+            right: 35px;
+            padding: 6px 16px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 30px;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+        .badge.before { background: #333; color: #fff; }
+        .badge.after { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); }
+
+        /* Payment Section */
+        .payment-card {
+            background: linear-gradient(145deg, #121212, #1a1a1a);
+            border-radius: 20px;
+            padding: 50px 30px;
             text-align: center;
-            transition: all 0.4s ease;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             overflow: hidden;
         }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 40px rgba(240, 147, 251, 0.2);
-            border-color: rgba(240, 147, 251, 0.3);
-        }
-        
-        .media-box {
-            width: 100%;
-            height: 250px;
-            border-radius: 10px;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 2px solid transparent;
-            transition: 0.3s;
-        }
-        .card:hover .media-box {
-            border-color: #f093fb;
-        }
-        
-        .badge {
+        .payment-card::before {
+            content: '';
             position: absolute;
-            top: 30px;
-            right: 30px;
-            background: #f093fb;
-            color: #000;
-            padding: 5px 15px;
-            font-size: 12px;
-            font-weight: 700;
-            border-radius: 20px;
-            font-family: 'Orbitron', sans-serif;
-            box-shadow: 0 0 10px #f093fb;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(transparent, var(--primary), transparent 30%);
+            animation: rotate 4s linear infinite;
+            z-index: 0;
+            opacity: 0.15;
         }
-        .badge.before {
-            background: #555;
-            color: #fff;
-            box-shadow: none;
+        .payment-content { position: relative; z-index: 1; }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
         }
 
-        /* Payment Section */
-        .payment-box {
-            text-align: center;
-            padding: 50px 20px;
-            max-width: 600px;
-            margin: 0 auto;
-            border-top: 4px solid #f093fb;
-        }
         .qr-wrapper {
-            width: 220px;
-            height: 220px;
+            width: 250px;
+            height: 250px;
             margin: 30px auto;
             background: #fff;
             padding: 10px;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(240, 147, 251, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-        .qr-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .upi-container {
-            margin: 20px 0;
-            display: inline-flex;
+        .qr-wrapper img { width: 100%; height: 100%; border-radius: 12px; }
+
+        .upi-box {
+            display: flex;
             align-items: center;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
         }
         .upi-id {
+            background: #000;
+            padding: 12px 25px;
+            border-radius: 8px;
             font-size: 1.2rem;
-            font-weight: 600;
-            margin-right: 15px;
             letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .copy-btn {
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            color: #fff;
+            background: var(--primary);
+            color: #000;
             border: none;
-            padding: 8px 20px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            border-radius: 5px;
+            padding: 12px 25px;
+            font-weight: 700;
+            border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
         }
         .copy-btn:hover {
-            opacity: 0.8;
-            box-shadow: 0 0 15px #f093fb;
+            background: #fff;
+            box-shadow: 0 0 20px var(--primary);
         }
+
+        /* Help & Support Section */
+        .support-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .support-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .support-btn.insta {
+            background: transparent;
+            color: #f093fb;
+            border: 2px solid #f093fb;
+        }
+        .support-btn.discord {
+            background: transparent;
+            color: #5865F2;
+            border: 2px solid #5865F2;
+        }
+        .support-btn:hover { color: #fff; transform: translateY(-5px); }
+        
+        .support-btn.insta:hover { background: #f093fb; box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4); }
+        .support-btn.discord:hover { background: #5865F2; box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4); }
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 50px 20px;
+            background: #000;
+            padding: 30px;
             text-align: center;
-            margin-top: 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 20px;
-        }
-        .social-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 30px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s;
-        }
-        .social-links a:hover {
-            background: #f093fb;
-            color: #000;
-            border-color: #f093fb;
-            box-shadow: 0 0 20px rgba(240, 147, 251, 0.4);
-        }
-        
-        /* Mobile Responsive */
+
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            header { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 3rem; }
+            header { flex-direction: column; gap: 10px; padding: 15px; }
+            .upi-box { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-glow"></div>
+
     <header>
-        <div class="logo fx-text">BUNNY FX</div>
+        <div class="logo">BUNNY FX</div>
         <nav>
-            <a href="#quality">CC & Quality</a>
-            <a href="#assets">Assets</a>
-            <a href="#payment">Get Access</a>
+            <a href="#images">Images</a>
+            <a href="#video">CC Video</a>
+            <a href="#access">Get Access</a>
+            <a href="#support">Support</a>
         </nav>
     </header>
 
     <section class="hero">
-        <h1 class="fx-text">ELITE VISUALS</h1>
-        <p>Premium CC, Quality Packs, and Motion Text Animations to take your montages to the next level.</p>
+        <h1>Elevate Your Content</h1>
+        <p>Ultra-Premium Color Correction (CC) and Quality Enhancements designed exclusively for top-tier Esports Montages.</p>
     </section>
 
-    <!-- CC & Quality Previews -->
-    <section id="quality" class="section">
+    <!-- Images Showcase -->
+    <section id="images" class="section reveal">
         <h2 class="section-title">Visual Comparison</h2>
         <div class="grid-container">
             <!-- Normal -->
-            <div class="card glass-panel">
+            <div class="card">
                 <span class="badge before">RAW</span>
                 <img src="before.jpg" alt="Before" class="media-box">
-                <h3 style="margin-bottom: 10px;">Without FX</h3>
-                <p style="color: #aaa; font-size: 0.9rem;">Standard unedited gameplay footage.</p>
+                <h3>Without FX</h3>
+                <p style="color: #888; font-size: 0.95rem; margin-top: 10px;">The original gameplay footage lacking depth and color.</p>
             </div>
             
             <!-- Edited -->
-            <div class="card glass-panel">
-                <span class="badge">BUNNY FX</span>
+            <div class="card">
+                <span class="badge after">BUNNY FX</span>
                 <img src="after.jpg" alt="After" class="media-box">
-                <h3 style="margin-bottom: 10px;">Premium CC + Quality</h3>
-                <p style="color: #aaa; font-size: 0.9rem;">Enhanced glowing look with crisp details.</p>
+                <h3>Premium CC + Quality</h3>
+                <p style="color: #888; font-size: 0.95rem; margin-top: 10px;">Applied professional CC, sharpening, and glowing contrasts.</p>
             </div>
         </div>
     </section>
 
-    <!-- Text Animations -->
-    <section id="assets" class="section">
-        <h2 class="section-title">Motion Assets</h2>
+    <!-- CC Video Showcase -->
+    <section id="video" class="section reveal">
+        <h2 class="section-title">CC & Quality Video Showcase</h2>
         <div class="grid-container" style="display: flex; justify-content: center;">
-            <div class="card glass-panel" style="width: 100%; max-width: 600px;">
-                <video src="animation.mp4" autoplay loop muted playsinline class="media-box"></video>
-                <h3 style="margin-bottom: 10px;">Text Animations</h3>
-                <p style="color: #aaa; font-size: 0.9rem;">Smooth, pre-animated text overlays for perfect syncs.</p>
+            <div class="card" style="width: 100%; max-width: 800px;">
+                <video src="cc-quality.mp4" autoplay loop muted playsinline controls class="media-box" style="height: auto; max-height: 450px;"></video>
+                <h3 style="margin-top: 10px; font-size: 1.8rem; color: var(--primary);">Live Gameplay Quality</h3>
+                <p style="color: #888; font-size: 1rem; margin-top: 10px;">See the magic in motion. This video demonstrates the exact CC and Quality effects applied to real gameplay. (No text animations, just pure visual enhancement).</p>
             </div>
         </div>
     </section>
 
-    <!-- Payment -->
-    <section id="payment" class="section">
-        <div class="payment-box glass-panel">
-            <h2>Unlock <span class="fx-text">Everything</span></h2>
-            <p style="color: #aaa; margin-top: 10px;">Scan QR to pay. Send screenshot on Discord to get the files.</p>
-            
-            <div class="qr-wrapper">
-                <img src="qr.jpg" alt="UPI QR Code">
-            </div>
+    <!-- Payment Access -->
+    <section id="access" class="section reveal">
+        <h2 class="section-title">Unlock Premium Access</h2>
+        <div class="payment-card">
+            <div class="payment-content">
+                <h3 style="font-size: 1.5rem;">Scan & Pay</h3>
+                <p style="color: #888; margin-top: 10px;">Complete the payment and send the screenshot to our Discord server to receive the files instantly.</p>
+                
+                <div class="qr-wrapper">
+                    <img src="qr.jpg" alt="UPI QR Code">
+                </div>
 
-            <div class="upi-container">
-                <span class="upi-id" id="upi-text">bunnysamit@fam</span>
-                <button class="copy-btn" onclick="copyUPI()">Copy ID</button>
+                <div class="upi-box">
+                    <span class="upi-id" id="upi-text">bunnysamit@fam</span>
+                    <button class="copy-btn" onclick="copyUPI()">COPY ID</button>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Help & Support -->
+    <section id="support" class="section reveal">
+        <h2 class="section-title">Help & Support</h2>
+        <p style="text-align: center; color: #888; margin-bottom: 40px; font-size: 1.1rem;">Need help with the payment or applying the CC? Reach out to us directly!</p>
+        
+        <div class="support-container">
+            <a href="https://www.instagram.com/bxnnyfx?mdxt=MWIwbGw0YmkzMzY5cQ==" target="_blank" class="support-btn insta">
+                📷 Instagram
+            </a>
+            <a href="https://discord.gg/MtWgkgf4UA" target="_blank" class="support-btn discord">
+                🎮 Discord Server
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="social-links">
-            <a href="https://www.instagram.com/bxnnyfx?mdxt=MWIwbGw0YmkzMzY5cQ==" target="_blank">Instagram</a>
-            <a href="https://discord.gg/MtWgkgf4UA" target="_blank">Discord</a>
-        </div>
-        <p style="color: #666; font-size: 0.9rem; font-family: 'Orbitron', sans-serif;">© 2026 BUNNY FX. ALL RIGHTS RESERVED.</p>
+        <p style="color: #555; font-size: 0.9rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;">© 2026 BUNNY FX. CRAFTED FOR CREATORS.</p>
     </footer>
 
+    <!-- JavaScript for Animations and Copy functionality -->
     <script>
+        // Copy UPI Function
         function copyUPI() {
             var upiText = document.getElementById("upi-text").innerText;
             navigator.clipboard.writeText(upiText).then(function() {
                 var btn = document.querySelector('.copy-btn');
-                btn.innerText = 'Copied!';
-                btn.style.background = '#4CAF50';
+                btn.innerText = 'COPIED!';
+                btn.style.background = '#00ff00';
+                btn.style.color = '#000';
                 setTimeout(function() {
-                    btn.innerText = 'Copy ID';
-                    btn.style.background = 'linear-gradient(45deg, #f093fb, #f5576c)';
+                    btn.innerText = 'COPY ID';
+                    btn.style.background = 'var(--primary)';
                 }, 2000);
-            }, function(err) {
-                console.error('Could not copy text: ', err);
             });
         }
+
+        // Scroll Reveal Animation Script
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
     </script>
 </body>
 </html>
