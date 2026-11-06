@@ -83,6 +83,7 @@
             letter-spacing: 1.5px;
             border-radius: 40px;
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: pointer;
         }
 
         nav a:hover { 
@@ -329,49 +330,116 @@
             background: #000;
         }
 
-        /* Payment */
-        .payment-card {
-            background: linear-gradient(145deg, #121212, #1a1a1a);
+        /* --- MULTI-TIER PRICING SECTION --- */
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .pricing-card {
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 20px;
-            padding: 50px 30px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 340px;
+            position: relative;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        /* Elite Glow Card */
+        .pricing-card.elite {
+            background: linear-gradient(145deg, #160a22, #121212);
+            border: 1px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+        }
+        .pricing-card.elite:hover {
+            box-shadow: 0 15px 40px rgba(0, 242, 254, 0.3);
+        }
+        
+        .pricing-card .best-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: #000;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 800;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .pack-title {
+            font-size: 1.5rem;
+            color: #aaa;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .pricing-card.elite .pack-title {
+            color: #fff;
+        }
+
+        .pack-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            font-family: 'Rajdhani', sans-serif;
+            margin: 15px 0;
+            color: #fff;
+        }
+        .pricing-card.elite .pack-price {
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+            margin: 25px 0;
+        }
+        .features-list li {
+            margin-bottom: 15px;
+            color: #ccc;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .features-list li.yes::before { content: '✔️'; font-size: 14px; }
+        .features-list li.no { opacity: 0.4; }
+        .features-list li.no::before { content: '❌'; font-size: 14px; }
+
+        /* Payment Base Box */
+        .payment-card {
+            background: #0a0a0a;
+            border-radius: 20px;
+            padding: 40px 30px;
             text-align: center;
             max-width: 600px;
             margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
         }
-        .payment-card::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: conic-gradient(transparent, var(--primary), transparent 30%);
-            animation: rotate 4s linear infinite;
-            z-index: 0;
-            opacity: 0.15;
-        }
-        .payment-content { position: relative; z-index: 1; }
-        
-        .price-tag {
-            color: var(--primary);
-            font-size: 2.2rem;
-            font-weight: 800;
-            text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
-        }
-
-        @keyframes rotate { 100% { transform: rotate(360deg); } }
-
         .qr-wrapper {
-            width: 250px;
-            height: 250px;
-            margin: 30px auto;
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
             background: #fff;
             padding: 10px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
         }
-        .qr-wrapper img { width: 100%; height: 100%; border-radius: 12px; }
+        .qr-wrapper img { width: 100%; height: 100%; border-radius: 8px; }
 
         .upi-box {
             display: flex;
@@ -445,7 +513,6 @@
         .faq-item.active .faq-answer {
             max-height: 300px;
             padding-bottom: 20px;
-            transition: all 0.3s cubic-bezier(1, 0, 1, 0);
         }
         .faq-item.active .faq-arrow { transform: rotate(180deg); }
 
@@ -469,8 +536,7 @@
             text-decoration: none;
             border-radius: 50px;
             transition: all 0.4s ease;
-            position: relative;
-            z-index: 1;
+            cursor: pointer;
         }
         .support-btn.insta { background: transparent; color: #f093fb; border: 2px solid #f093fb; }
         .support-btn.discord { background: transparent; color: #5865F2; border: 2px solid #5865F2; }
@@ -498,19 +564,24 @@
 </head>
 <body>
 
+    <!-- UI Sound Effects Hidden Elements -->
+    <!-- Aap inki jagah apne local sounds bhi daal sakte hain -->
+    <audio id="hoverSound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_0625c1539c.mp3?filename=hover-101111.mp3" preload="auto"></audio>
+    <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c8c8a73467.mp3?filename=ui-click-43196.mp3" preload="auto"></audio>
+
     <div class="bg-glow"></div>
 
     <header>
-        <div class="logo-wrapper">
+        <div class="logo-wrapper interactable">
             <img src="logo.png" alt="Bunny FX Logo" class="brand-logo">
             <div class="logo">BUNNY FX</div>
         </div>
         <nav>
-            <a href="#compare">Compare</a>
-            <a href="#video">Video</a>
-            <a href="#access">Price</a>
-            <a href="#faq">FAQ</a>
-            <a href="#support">Support</a>
+            <a href="#compare" class="interactable">Compare</a>
+            <a href="#video" class="interactable">Video</a>
+            <a href="#access" class="interactable">Pricing</a>
+            <a href="#faq" class="interactable">FAQ</a>
+            <a href="#support" class="interactable">Support</a>
         </nav>
     </header>
 
@@ -518,44 +589,38 @@
         <h1>Elevate Your Content</h1>
         <p>Ultra-Premium Color Correction (CC) and Quality Enhancements designed exclusively for top-tier Esports Montages.</p>
         
-        <!-- Supported Apps Badges -->
         <div class="supported-apps">
             <div class="supported-title">Optimized & Supported In</div>
             <div class="app-badges">
-                <div class="app-pill">⚡ Alight Motion <span>Android & iOS</span></div>
-                <div class="app-pill">🎬 CapCut <span>Android & iOS</span></div>
+                <div class="app-pill interactable">⚡ Alight Motion <span>Android & iOS</span></div>
+                <div class="app-pill interactable">🎬 CapCut <span>Android & iOS</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Before/After Comparison Slider -->
     <section id="compare" class="section reveal slider-section">
         <h2 class="section-title">Interactive Comparison</h2>
         <p style="color: #888; text-align: center; margin-bottom: 25px;">Drag the center slider to see the difference.</p>
         
         <div class="slider-wrapper" id="sliderWrapper">
-            <!-- After Image (Background) -->
             <img src="after.jpg" alt="After CC" class="slider-img">
             <span class="slider-tag fx">BUNNY FX QUALITY</span>
 
-            <!-- Before Image (Clipped Layer) -->
             <div class="img-before" id="beforeLayer">
                 <img src="before.jpg" alt="Before CC" id="beforeImg">
             </div>
             <span class="slider-tag raw">RAW FOOTAGE</span>
 
-            <!-- Center Slider Handle -->
             <div class="slider-handle" id="sliderHandle">
                 <div class="handle-circle">↔</div>
             </div>
         </div>
     </section>
 
-    <!-- CC Video Showcase -->
     <section id="video" class="section reveal">
         <h2 class="section-title">CC & Quality Video Showcase</h2>
         <div style="display: flex; justify-content: center;">
-            <div class="card" style="width: 100%; max-width: 850px;">
+            <div class="card interactable" style="width: 100%; max-width: 850px;">
                 <video src="cc-quality.mp4" autoplay loop muted playsinline controls class="media-box" style="height: auto; max-height: 480px;"></video>
                 <h3 style="margin-top: 15px; font-size: 1.8rem; color: var(--primary);">Live Gameplay Quality</h3>
                 <p style="color: #888; font-size: 1rem; margin-top: 10px;">Watch the real-time visual enhancement in action across motion gameplay.</p>
@@ -563,31 +628,56 @@
         </div>
     </section>
 
-    <!-- Payment Access -->
+    <!-- NEW MULTI-TIER PRICING SECTION -->
     <section id="access" class="section reveal">
-        <h2 class="section-title">Unlock Premium Access</h2>
-        <div class="payment-card">
-            <div class="payment-content">
-                <h3 style="font-size: 1.5rem;">Unlock for <span class="price-tag">₹199</span></h3>
-                <p style="color: #888; margin-top: 10px;">Pay ₹199 and send the payment screenshot to our Discord server to receive the files instantly.</p>
-                
-                <div class="qr-wrapper">
-                    <img src="qr.jpg" alt="UPI QR Code">
-                </div>
+        <h2 class="section-title">Choose Your Setup</h2>
+        
+        <div class="pricing-grid">
+            <!-- Basic Tier -->
+            <div class="pricing-card interactable">
+                <div class="pack-title">Basic Pack</div>
+                <div class="pack-price">₹99</div>
+                <ul class="features-list">
+                    <li class="yes">Premium CC Presets</li>
+                    <li class="yes">Standard Quality Export Guide</li>
+                    <li class="no">Ultra 4K & Glowing Sharpening</li>
+                    <li class="no">Priority VIP Discord Support</li>
+                </ul>
+            </div>
+            
+            <!-- Elite Tier (Highlighted) -->
+            <div class="pricing-card elite interactable">
+                <span class="best-badge">BEST SELLER</span>
+                <div class="pack-title">Elite Bundle</div>
+                <div class="pack-price">₹199</div>
+                <ul class="features-list">
+                    <li class="yes">Premium CC Presets</li>
+                    <li class="yes">Ultra 4K & Glowing Sharpening</li>
+                    <li class="yes">All Setup Tutorial Videos</li>
+                    <li class="yes">Priority VIP Discord Support</li>
+                </ul>
+            </div>
+        </div>
 
-                <div class="upi-box">
-                    <span class="upi-id" id="upi-text">bunnysamit@fam</span>
-                    <button class="copy-btn" onclick="copyUPI()">COPY ID</button>
-                </div>
+        <div class="payment-card">
+            <h3 style="font-size: 1.4rem;">Pay The Amount of Your Pack</h3>
+            <p style="color: #888; margin-top: 10px;">Scan QR or copy UPI ID. Pay ₹99 or ₹199 depending on your choice, and send the screenshot to our Discord!</p>
+            
+            <div class="qr-wrapper interactable">
+                <img src="qr.jpg" alt="UPI QR Code">
+            </div>
+
+            <div class="upi-box">
+                <span class="upi-id" id="upi-text">bunnysamit@fam</span>
+                <button class="copy-btn interactable" onclick="copyUPI()">COPY ID</button>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Accordion Section -->
     <section id="faq" class="section reveal">
         <h2 class="section-title">Frequently Asked Questions</h2>
         <div class="faq-container">
-            <div class="faq-item">
+            <div class="faq-item interactable">
                 <div class="faq-question">
                     <span>Payment ke baad file kaise milegi?</span>
                     <span class="faq-arrow">▼</span>
@@ -597,7 +687,7 @@
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item interactable">
                 <div class="faq-question">
                     <span>Kya ye Android aur iPhone dono me work karega?</span>
                     <span class="faq-arrow">▼</span>
@@ -607,38 +697,27 @@
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item interactable">
                 <div class="faq-question">
-                    <span>Pack me kya kya shamil hai?</span>
+                    <span>Basic aur Elite pack me kya farq hai?</span>
                     <span class="faq-arrow">▼</span>
                 </div>
                 <div class="faq-answer">
-                    Is pack me crisp quality settings, cinematic color correction (CC) presets, aur setup guide shamil hai jisse aapka gameplay ultra-smooth aur glowing lagega.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Agar CC apply karne me issue aaye toh kya support milega?</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Bilkul! Aap hamare Discord server par ticket create kar sakte hain ya Instagram par DM kar sakte hain, hum setting apply karne me poori madad karenge.
+                    Basic me aapko sirf CC file milegi. Elite Bundle me aapko Ultra 4K Quality setup, tutorials, aur priority fast reply support milega.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Help & Support -->
     <section id="support" class="section reveal">
         <h2 class="section-title">Help & Support</h2>
         <p style="text-align: center; color: #888; margin-bottom: 40px; font-size: 1.1rem;">Have any queries or need assistance? Reach out directly!</p>
         
         <div class="support-container">
-            <a href="https://www.instagram.com/bxnnyfx?mdxt=MWIwbGw0YmkzMzY5cQ==" target="_blank" class="support-btn insta">
+            <a href="https://www.instagram.com/bxnnyfx?mdxt=MWIwbGw0YmkzMzY5cQ==" target="_blank" class="support-btn insta interactable">
                 📷 Instagram
             </a>
-            <a href="https://discord.gg/MtWgkgf4UA" target="_blank" class="support-btn discord">
+            <a href="https://discord.gg/MtWgkgf4UA" target="_blank" class="support-btn discord interactable">
                 🎮 Discord Server
             </a>
         </div>
@@ -716,7 +795,6 @@
             handle.style.left = percentage + "%";
         }
 
-        // Mouse Events
         slider.addEventListener("mousedown", () => isDragging = true);
         window.addEventListener("mouseup", () => isDragging = false);
         window.addEventListener("mousemove", (e) => {
@@ -724,12 +802,40 @@
             setSliderPosition(e.clientX);
         });
 
-        // Touch Events (Mobile)
         slider.addEventListener("touchstart", () => isDragging = true);
         window.addEventListener("touchend", () => isDragging = false);
         window.addEventListener("touchmove", (e) => {
             if (!isDragging) return;
             setSliderPosition(e.touches[0].clientX);
+        });
+
+        // Futuristic UI Sound Effects
+        const hoverSound = document.getElementById('hoverSound');
+        const clickSound = document.getElementById('clickSound');
+        
+        // Volume adjust taaki kaano me chubhe na
+        hoverSound.volume = 0.2; 
+        clickSound.volume = 0.4;
+
+        const interactables = document.querySelectorAll('.interactable');
+        
+        interactables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                // Agar user device se interact kar chuka hai tabhi sound aayegi (browser policy)
+                hoverSound.currentTime = 0;
+                let playPromise = hoverSound.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => { /* Autoplay prevented */ });
+                }
+            });
+            
+            el.addEventListener('click', () => {
+                clickSound.currentTime = 0;
+                let playPromise = clickSound.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => { /* Autoplay prevented */ });
+                }
+            });
         });
     </script>
 </body>
