@@ -3,29 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anuu Live FF | Premium Editing Assets</title>
+    <title>BUNNY FX | Premium Edits & CC</title>
+    <!-- Importing Modern Gaming Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         /* Base & Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #0a0a0a;
+            background-color: #050505;
+            background-image: radial-gradient(circle at top right, #2b0b3f, #050505 50%), 
+                              radial-gradient(circle at bottom left, #1a0033, #050505 50%);
             color: #ffffff;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
+            min-height: 100vh;
         }
         
-        /* Neon Aesthetics */
-        .neon-text {
-            color: #fff;
-            text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+        h1, h2, h3, .logo {
+            font-family: 'Orbitron', sans-serif;
         }
-        .neon-border {
-            border: 2px solid #00ffcc;
-            box-shadow: 0 0 10px #00ffcc inset, 0 0 10px #00ffcc;
+
+        /* Glassmorphism Effect */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Gradient Text */
+        .fx-text {
+            background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+            background: linear-gradient(to right, #b92b27, #1565C0);
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Navigation */
@@ -33,264 +52,297 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            background: rgba(10, 10, 10, 0.9);
+            padding: 20px 5% ;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #333;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 28px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(240, 147, 251, 0.5);
         }
         nav a {
-            color: #fff;
+            color: #ddd;
             text-decoration: none;
             margin: 0 15px;
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
         nav a:hover {
-            color: #00ffcc;
+            color: #f093fb;
+            text-shadow: 0 0 10px #f093fb;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+            padding: 120px 20px 80px;
         }
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
+            font-size: 4rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
         }
         .hero p {
             font-size: 1.2rem;
             color: #aaa;
-            margin-bottom: 30px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Section Containers */
+        /* Sections */
         .section {
             padding: 60px 20px;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 40px;
-            text-transform: uppercase;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            color: #fff;
         }
 
-        /* Before/After Preview Container */
-        .comparison-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
+        /* Previews Container */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-        .preview-box {
-            background: #111;
-            border-radius: 10px;
+        
+        .card {
             padding: 20px;
             text-align: center;
-            width: 45%;
-            min-width: 300px;
-            transition: transform 0.3s;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .preview-box:hover {
-            transform: translateY(-5px);
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(240, 147, 251, 0.2);
+            border-color: rgba(240, 147, 251, 0.3);
         }
-        .preview-media {
+        
+        .media-box {
             width: 100%;
             height: 250px;
-            background-color: #222;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            border-radius: 10px;
             object-fit: cover;
-            border: 1px solid #333;
+            margin-bottom: 20px;
+            border: 2px solid transparent;
+            transition: 0.3s;
         }
-        .tag {
-            display: inline-block;
+        .card:hover .media-box {
+            border-color: #f093fb;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #f093fb;
+            color: #000;
             padding: 5px 15px;
-            background: #222;
+            font-size: 12px;
+            font-weight: 700;
             border-radius: 20px;
-            font-size: 14px;
-            margin-bottom: 10px;
-            color: #00ffcc;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 10px #f093fb;
+        }
+        .badge.before {
+            background: #555;
+            color: #fff;
+            box-shadow: none;
         }
 
         /* Payment Section */
-        .payment-section {
-            background: #111;
-            border-radius: 15px;
-            padding: 40px;
+        .payment-box {
             text-align: center;
-            margin-top: 40px;
+            padding: 50px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            border-top: 4px solid #f093fb;
         }
-        .qr-code {
-            width: 250px;
-            height: 250px;
-            margin: 20px auto;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #00ffcc;
-            padding: 10px;
+        .qr-wrapper {
+            width: 220px;
+            height: 220px;
+            margin: 30px auto;
             background: #fff;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(240, 147, 251, 0.3);
         }
-        .qr-code img {
+        .qr-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-        }
-        .upi-id {
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            margin: 20px 0;
-            padding: 15px;
-            background: #000;
-            display: inline-block;
+            object-fit: cover;
             border-radius: 8px;
         }
-        .copy-btn {
-            background: #00ffcc;
-            color: #000;
-            border: none;
+        .upi-container {
+            margin: 20px 0;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
             padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .upi-id {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-right: 15px;
+            letter-spacing: 1px;
+        }
+        .copy-btn {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
             border-radius: 5px;
             cursor: pointer;
             transition: 0.3s;
         }
         .copy-btn:hover {
-            background: #fff;
+            opacity: 0.8;
+            box-shadow: 0 0 15px #f093fb;
         }
 
-        /* Footer & Socials */
+        /* Footer */
         footer {
-            background: #050505;
-            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 50px 20px;
             text-align: center;
-            border-top: 1px solid #222;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         .social-links {
-            margin-bottom: 20px;
             display: flex;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 20px;
         }
         .social-links a {
             color: #fff;
             text-decoration: none;
-            font-size: 1.2rem;
-            padding: 10px 20px;
-            border-radius: 5px;
-            background: #222;
-            transition: 0.3s;
-            border: 1px solid #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
         }
         .social-links a:hover {
-            background: #00ffcc;
+            background: #f093fb;
             color: #000;
-            border-color: #00ffcc;
+            border-color: #f093fb;
+            box-shadow: 0 0 20px rgba(240, 147, 251, 0.4);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            header { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo neon-text">Anuu Live FF</div>
+        <div class="logo fx-text">BUNNY FX</div>
         <nav>
-            <a href="#previews">Previews</a>
+            <a href="#quality">CC & Quality</a>
             <a href="#assets">Assets</a>
-            <a href="#payment">Payment</a>
+            <a href="#payment">Get Access</a>
         </nav>
     </header>
 
     <section class="hero">
-        <h1 class="neon-text">Premium Editing Assets</h1>
-        <p>Top-tier CC, Quality Packs, and Text Animations for your Montages.</p>
+        <h1 class="fx-text">ELITE VISUALS</h1>
+        <p>Premium CC, Quality Packs, and Motion Text Animations to take your montages to the next level.</p>
     </section>
 
-    <!-- Before/After Preview Section -->
-    <section id="previews" class="section">
-        <h2 class="section-title neon-text">Quality & CC Previews</h2>
-        <div class="comparison-container">
-            <!-- Without CC (Before) -->
-            <div class="preview-box">
-                <span class="tag">Before</span>
-                <!-- Yahan normal gameplay ki photo aayegi -->
-                <img src="before.jpg" alt="Before CC" class="preview-media">
-                <h3>Without CC & Quality</h3>
-                <p>Bina kisi effect ke raw footage.</p>
+    <!-- CC & Quality Previews -->
+    <section id="quality" class="section">
+        <h2 class="section-title">Visual Comparison</h2>
+        <div class="grid-container">
+            <!-- Normal -->
+            <div class="card glass-panel">
+                <span class="badge before">RAW</span>
+                <img src="before.jpg" alt="Before" class="media-box">
+                <h3 style="margin-bottom: 10px;">Without FX</h3>
+                <p style="color: #aaa; font-size: 0.9rem;">Standard unedited gameplay footage.</p>
             </div>
             
-            <!-- With CC (After) -->
-            <div class="preview-box neon-border">
-                <span class="tag" style="background:#00ffcc; color:#000;">After</span>
-                <!-- Yahan CC/Quality ke baad wali photo aayegi -->
-                <img src="after.jpg" alt="After CC" class="preview-media">
-                <h3>With Premium CC + Quality</h3>
-                <p>Pack use karne ke baad crisp aur glowing look.</p>
+            <!-- Edited -->
+            <div class="card glass-panel">
+                <span class="badge">BUNNY FX</span>
+                <img src="after.jpg" alt="After" class="media-box">
+                <h3 style="margin-bottom: 10px;">Premium CC + Quality</h3>
+                <p style="color: #aaa; font-size: 0.9rem;">Enhanced glowing look with crisp details.</p>
             </div>
         </div>
     </section>
 
-    <!-- Text Animations Section -->
+    <!-- Text Animations -->
     <section id="assets" class="section">
-        <h2 class="section-title neon-text">Text Animations & Effects</h2>
-        <div class="comparison-container">
-            <div class="preview-box">
-                <!-- Agar video hai toh video play hogi, photo hui toh upar wala <img> tag use kar lena -->
-                <video src="animation.mp4" autoplay loop muted playsinline class="preview-media"></video>
-                <h3>Neon Text Animation Pack</h3>
-                <p>Eye-catching text presets for intros and syncs.</p>
+        <h2 class="section-title">Motion Assets</h2>
+        <div class="grid-container" style="display: flex; justify-content: center;">
+            <div class="card glass-panel" style="width: 100%; max-width: 600px;">
+                <video src="animation.mp4" autoplay loop muted playsinline class="media-box"></video>
+                <h3 style="margin-bottom: 10px;">Text Animations</h3>
+                <p style="color: #aaa; font-size: 0.9rem;">Smooth, pre-animated text overlays for perfect syncs.</p>
             </div>
         </div>
     </section>
 
-    <!-- Payment Section -->
+    <!-- Payment -->
     <section id="payment" class="section">
-        <div class="payment-section neon-border">
-            <h2 class="neon-text">Get Access Now</h2>
-            <p>Payment complete karne ke baad screenshot Discord par bhejein.</p>
+        <div class="payment-box glass-panel">
+            <h2>Unlock <span class="fx-text">Everything</span></h2>
+            <p style="color: #aaa; margin-top: 10px;">Scan QR to pay. Send screenshot on Discord to get the files.</p>
             
-            <!-- QR Code Image -->
-            <div class="qr-code">
-                <img src="qr.jpg" alt="Scan to Pay">
+            <div class="qr-wrapper">
+                <img src="qr.jpg" alt="UPI QR Code">
             </div>
 
-            <div class="upi-id neon-text" id="upi-text">bunnysamit@fam</div>
-            <br>
-            <button class="copy-btn" onclick="copyUPI()">Copy UPI ID</button>
+            <div class="upi-container">
+                <span class="upi-id" id="upi-text">bunnysamit@fam</span>
+                <button class="copy-btn" onclick="copyUPI()">Copy ID</button>
+            </div>
         </div>
     </section>
 
-    <!-- Footer & Socials -->
+    <!-- Footer -->
     <footer>
         <div class="social-links">
-            <!-- Aapka Instagram Link -->
             <a href="https://www.instagram.com/bxnnyfx?mdxt=MWIwbGw0YmkzMzY5cQ==" target="_blank">Instagram</a>
-            <!-- Aapka Discord Link -->
-            <a href="https://discord.gg/MtWgkgf4UA" target="_blank">Discord Server</a>
+            <a href="https://discord.gg/MtWgkgf4UA" target="_blank">Discord</a>
         </div>
-        <p style="color: #666; margin-top: 20px;">© 2026 Anuu Live FF. All Rights Reserved.</p>
+        <p style="color: #666; font-size: 0.9rem; font-family: 'Orbitron', sans-serif;">© 2026 BUNNY FX. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
         function copyUPI() {
             var upiText = document.getElementById("upi-text").innerText;
             navigator.clipboard.writeText(upiText).then(function() {
-                alert("UPI ID Copied: " + upiText);
+                var btn = document.querySelector('.copy-btn');
+                btn.innerText = 'Copied!';
+                btn.style.background = '#4CAF50';
+                setTimeout(function() {
+                    btn.innerText = 'Copy ID';
+                    btn.style.background = 'linear-gradient(45deg, #f093fb, #f5576c)';
+                }, 2000);
             }, function(err) {
                 console.error('Could not copy text: ', err);
             });
@@ -298,4 +350,3 @@
     </script>
 </body>
 </html>
-
