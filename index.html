@@ -65,6 +65,23 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
+
+        /* Logo Layout & Animations */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            animation: logo-glow 3s infinite alternate;
+        }
         
         .logo {
             font-size: 32px;
@@ -77,8 +94,8 @@
         }
 
         @keyframes logo-glow {
-            0% { text-shadow: 0 0 10px rgba(0, 242, 254, 0.2); }
-            100% { text-shadow: 0 0 20px rgba(0, 242, 254, 0.6); }
+            0% { text-shadow: 0 0 10px rgba(0, 242, 254, 0.2); box-shadow: 0 0 10px rgba(0, 242, 254, 0.2); }
+            100% { text-shadow: 0 0 20px rgba(0, 242, 254, 0.6); box-shadow: 0 0 20px rgba(0, 242, 254, 0.6); }
         }
 
         nav a {
@@ -332,7 +349,10 @@
     <div class="bg-glow"></div>
 
     <header>
-        <div class="logo">BUNNY FX</div>
+        <div class="logo-wrapper">
+            <img src="logo.png" alt="Bunny FX Logo" class="brand-logo">
+            <div class="logo">BUNNY FX</div>
+        </div>
         <nav>
             <a href="#images">Images</a>
             <a href="#video">CC Video</a>
