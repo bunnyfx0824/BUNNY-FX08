@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BUNNY FX | Premium CC & Quality</title>
-    <!-- Premium Fonts: Rajdhani for Esports look, Inter for readability -->
+    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -50,20 +50,57 @@
             100% { transform: scale(1.2); }
         }
 
-        /* Navbar */
+        /* --- iOS LIQUID GLASS NAVBAR --- */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            padding: 15px 5%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            background: rgba(5, 5, 5, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+            background: rgba(10, 10, 10, 0.4);
+            /* Deep Apple-style Blur */
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        /* Nav Menu Liquid Pill Container */
+        nav {
+            display: flex;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            padding: 10px 22px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 40px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            background: transparent;
+        }
+
+        /* Liquid Glass Hover Effect */
+        nav a:hover { 
+            color: #fff; 
+            background: rgba(255, 255, 255, 0.1);
+            /* Inner Glass glow */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
         }
 
         /* Logo Layout & Animations */
@@ -98,18 +135,6 @@
             100% { text-shadow: 0 0 20px rgba(0, 242, 254, 0.6); box-shadow: 0 0 20px rgba(0, 242, 254, 0.6); }
         }
 
-        nav a {
-            color: #ccc;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-        nav a:hover { color: var(--primary); }
-
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -137,7 +162,7 @@
             transform: translateY(30px);
         }
 
-        /* Scroll Animations (Reveals) */
+        /* Scroll Animations */
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -176,7 +201,7 @@
             border-radius: 2px;
         }
 
-        /* Image & Video Cards */
+        /* Cards */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -221,7 +246,7 @@
         .badge.before { background: #333; color: #fff; }
         .badge.after { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); }
 
-        /* Payment Section */
+        /* Payment Section & Price Tag */
         .payment-card {
             background: linear-gradient(145deg, #121212, #1a1a1a);
             border-radius: 20px;
@@ -244,10 +269,15 @@
             opacity: 0.15;
         }
         .payment-content { position: relative; z-index: 1; }
-
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
+        
+        .price-tag {
+            color: var(--primary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
         }
+
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
 
         .qr-wrapper {
             width: 250px;
@@ -290,7 +320,7 @@
             box-shadow: 0 0 20px var(--primary);
         }
 
-        /* Help & Support Section */
+        /* Support Section */
         .support-container {
             display: flex;
             justify-content: center;
@@ -311,21 +341,12 @@
             border-radius: 50px;
             transition: all 0.4s ease;
             position: relative;
-            overflow: hidden;
             z-index: 1;
         }
-        .support-btn.insta {
-            background: transparent;
-            color: #f093fb;
-            border: 2px solid #f093fb;
-        }
-        .support-btn.discord {
-            background: transparent;
-            color: #5865F2;
-            border: 2px solid #5865F2;
-        }
-        .support-btn:hover { color: #fff; transform: translateY(-5px); }
+        .support-btn.insta { background: transparent; color: #f093fb; border: 2px solid #f093fb; }
+        .support-btn.discord { background: transparent; color: #5865F2; border: 2px solid #5865F2; }
         
+        .support-btn:hover { color: #fff; transform: translateY(-5px); }
         .support-btn.insta:hover { background: #f093fb; box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4); }
         .support-btn.discord:hover { background: #5865F2; box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4); }
 
@@ -339,7 +360,9 @@
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            header { flex-direction: column; gap: 10px; padding: 15px; }
+            header { flex-direction: column; gap: 15px; padding: 15px; }
+            nav { width: 100%; justify-content: space-between; padding: 5px; }
+            nav a { padding: 8px 12px; font-size: 11px; }
             .upi-box { flex-direction: column; }
         }
     </style>
@@ -370,15 +393,13 @@
     <section id="images" class="section reveal">
         <h2 class="section-title">Visual Comparison</h2>
         <div class="grid-container">
-            <!-- Normal -->
             <div class="card">
                 <span class="badge before">RAW</span>
                 <img src="before.jpg" alt="Before" class="media-box">
-                <h3>Without CC</h3>
+                <h3>Without FX</h3>
                 <p style="color: #888; font-size: 0.95rem; margin-top: 10px;">The original gameplay footage lacking depth and color.</p>
             </div>
             
-            <!-- Edited -->
             <div class="card">
                 <span class="badge after">BUNNY FX</span>
                 <img src="after.jpg" alt="After" class="media-box">
@@ -394,8 +415,8 @@
         <div class="grid-container" style="display: flex; justify-content: center;">
             <div class="card" style="width: 100%; max-width: 800px;">
                 <video src="cc-quality.mp4" autoplay loop muted playsinline controls class="media-box" style="height: auto; max-height: 450px;"></video>
-                <h3 style="margin-top: 10px; font-size: 1.8rem; color: var(--primary);">Gameplay Quality</h3>
-                <p style="color: #888; font-size: 1rem; margin-top: 10px;">See the magic in motion. This video demonstrates the exact CC and Quality effects applied to real gameplay. (No text animations, just pure visual enhancement).</p>
+                <h3 style="margin-top: 10px; font-size: 1.8rem; color: var(--primary);">Live Gameplay Quality</h3>
+                <p style="color: #888; font-size: 1rem; margin-top: 10px;">See the magic in motion. This video demonstrates the exact CC and Quality effects applied to real gameplay.</p>
             </div>
         </div>
     </section>
@@ -405,8 +426,8 @@
         <h2 class="section-title">Unlock Premium Access</h2>
         <div class="payment-card">
             <div class="payment-content">
-                <h3 style="font-size: 1.5rem;">Scan & Pay</h3>
-                <p style="color: #888; margin-top: 10px;">Complete the payment and send the screenshot to our Discord server to receive the files instantly.</p>
+                <h3 style="font-size: 1.5rem;">Unlock for <span class="price-tag">₹199</span></h3>
+                <p style="color: #888; margin-top: 10px;">Pay ₹199 and send the payment screenshot to our Discord server to receive the files instantly.</p>
                 
                 <div class="qr-wrapper">
                     <img src="qr.jpg" alt="UPI QR Code">
@@ -440,9 +461,8 @@
         <p style="color: #555; font-size: 0.9rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;">© 2026 BUNNY FX. CRAFTED FOR CREATORS.</p>
     </footer>
 
-    <!-- JavaScript for Animations and Copy functionality -->
+    <!-- Scripts -->
     <script>
-        // Copy UPI Function
         function copyUPI() {
             var upiText = document.getElementById("upi-text").innerText;
             navigator.clipboard.writeText(upiText).then(function() {
@@ -457,21 +477,19 @@
             });
         }
 
-        // Scroll Reveal Animation Script
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
                 var elementVisible = 100;
-
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // Trigger on load
+        reveal();
     </script>
 </body>
 </html>
