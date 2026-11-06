@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuu Live FF | Premium Editing Assets</title>
+    <style>
+        /* Base & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        /* Neon Aesthetics */
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+        }
+        .neon-border {
+            border: 2px solid #00ffcc;
+            box-shadow: 0 0 10px #00ffcc inset, 0 0 10px #00ffcc;
+        }
+
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(10, 10, 10, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #00ffcc;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        /* Section Containers */
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        /* Before/After Preview Container */
+        .comparison-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .preview-box {
+            background: #111;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 45%;
+            min-width: 300px;
+            transition: transform 0.3s;
+        }
+        .preview-box:hover {
+            transform: translateY(-5px);
+        }
+        .preview-media {
+            width: 100%;
+            height: 250px;
+            background-color: #222;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            object-fit: cover;
+            border: 1px solid #333;
+        }
+        .tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #222;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #00ffcc;
+        }
+
+        /* Payment Section */
+        .payment-section {
+            background: #111;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .qr-code {
+            width: 250px;
+            height: 250px;
+            margin: 20px auto;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #00ffcc;
+            padding: 10px;
+            background: #fff;
+        }
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .upi-id {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #000;
+            display: inline-block;
+            border-radius: 8px;
+        }
+        .copy-btn {
+            background: #00ffcc;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .copy-btn:hover {
+            background: #fff;
+        }
+
+        /* Footer & Socials */
+        footer {
+            background: #050505;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+        .social-links {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #222;
+            transition: 0.3s;
+            border: 1px solid #333;
+        }
+        .social-links a:hover {
+            background: #00ffcc;
+            color: #000;
+            border-color: #00ffcc;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo neon-text">Anuu Live FF</div>
+        <nav>
+            <a href="#previews">Previews</a>
+            <a href="#assets">Assets</a>
+            <a href="#payment">Payment</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 class="neon-text">Premium Editing Assets</h1>
+        <p>Top-tier CC, Quality Packs, and Text Animations for your Montages.</p>
+    </section>
+
+    <!-- Before/After Preview Section -->
+    <section id="previews" class="section">
+        <h2 class="section-title neon-text">Quality & CC Previews</h2>
+        <div class="comparison-container">
+            <!-- Without CC (Before) -->
+            <div class="preview-box">
+                <span class="tag">Before</span>
+                <!-- Yahan normal gameplay ki photo aayegi -->
+                <img src="before.jpg" alt="Before CC" class="preview-media">
+                <h3>Without CC & Quality</h3>
+                <p>Bina kisi effect ke raw footage.</p>
+            </div>
+            
+            <!-- With CC (After) -->
+            <div class="preview-box neon-border">
+                <span class="tag" style="background:#00ffcc; color:#000;">After</span>
+                <!-- Yahan CC/Quality ke baad wali photo aayegi -->
+                <img src="after.jpg" alt="After CC" class="preview-media">
+                <h3>With Premium CC + Quality</h3>
+                <p>Pack use karne ke baad crisp aur glowing look.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Text Animations Section -->
+    <section id="assets" class="section">
+        <h2 class="section-title neon-text">Text Animations & Effects</h2>
+        <div class="comparison-container">
+            <div class="preview-box">
+                <!-- Agar video hai toh video play hogi, photo hui toh upar wala <img> tag use kar lena -->
+                <video src="animation.mp4" autoplay loop muted playsinline class="preview-media"></video>
+                <h3>Neon Text Animation Pack</h3>
+                <p>Eye-catching text presets for intros and syncs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="section">
+        <div class="payment-section neon-border">
+            <h2 class="neon-text">Get Access Now</h2>
+            <p>Payment complete karne ke baad screenshot Discord par bhejein.</p>
+            
+            <!-- QR Code Image -->
+            <div class="qr-code">
+                <img src="qr.jpg" alt="Scan to Pay">
+            </div>
+
+            <div class="upi-id neon-text" id="upi-text">bunnysamit@fam</div>
+            <br>
+            <button class="copy-btn" onclick="copyUPI()">Copy UPI ID</button>
+        </div>
+    </section>
+
+    <!-- Footer & Socials -->
+    <footer>
+        <div class="social-links">
+            <!-- Aapka Instagram Link -->
+            <a href="https://www.instagram.com/bxnnyfx?mdxt=MWIwbGw0YmkzMzY5cQ==" target="_blank">Instagram</a>
+            <!-- Aapka Discord Link -->
+            <a href="https://discord.gg/MtWgkgf4UA" target="_blank">Discord Server</a>
+        </div>
+        <p style="color: #666; margin-top: 20px;">© 2026 Anuu Live FF. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function copyUPI() {
+            var upiText = document.getElementById("upi-text").innerText;
+            navigator.clipboard.writeText(upiText).then(function() {
+                alert("UPI ID Copied: " + upiText);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
+
