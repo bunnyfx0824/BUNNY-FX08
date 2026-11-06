@@ -564,10 +564,10 @@
 </head>
 <body>
 
-    <!-- UI Sound Effects Hidden Elements -->
-    <!-- Aap inki jagah apne local sounds bhi daal sakte hain -->
-    <audio id="hoverSound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_0625c1539c.mp3?filename=hover-101111.mp3" preload="auto"></audio>
-    <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c8c8a73467.mp3?filename=ui-click-43196.mp3" preload="auto"></audio>
+    <!-- CLEAN & SHORT UI SOUNDS (Low Volume) -->
+    <!-- Hover: Soft Tick | Click: Soft Pop -->
+    <audio id="hoverSound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3" preload="auto"></audio>
+    <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3" preload="auto"></audio>
 
     <div class="bg-glow"></div>
 
@@ -628,12 +628,10 @@
         </div>
     </section>
 
-    <!-- NEW MULTI-TIER PRICING SECTION -->
     <section id="access" class="section reveal">
         <h2 class="section-title">Choose Your Setup</h2>
         
         <div class="pricing-grid">
-            <!-- Basic Tier -->
             <div class="pricing-card interactable">
                 <div class="pack-title">Basic Pack</div>
                 <div class="pack-price">₹99</div>
@@ -645,7 +643,6 @@
                 </ul>
             </div>
             
-            <!-- Elite Tier (Highlighted) -->
             <div class="pricing-card elite interactable">
                 <span class="best-badge">BEST SELLER</span>
                 <div class="pack-title">Elite Bundle</div>
@@ -813,19 +810,18 @@
         const hoverSound = document.getElementById('hoverSound');
         const clickSound = document.getElementById('clickSound');
         
-        // Volume adjust taaki kaano me chubhe na
-        hoverSound.volume = 0.2; 
-        clickSound.volume = 0.4;
+        // Volume ekdum low aur soft kar diya (15% for hover, 30% for click)
+        hoverSound.volume = 0.15; 
+        clickSound.volume = 0.30;
 
         const interactables = document.querySelectorAll('.interactable');
         
         interactables.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                // Agar user device se interact kar chuka hai tabhi sound aayegi (browser policy)
                 hoverSound.currentTime = 0;
                 let playPromise = hoverSound.play();
                 if (playPromise !== undefined) {
-                    playPromise.catch(error => { /* Autoplay prevented */ });
+                    playPromise.catch(error => { /* Autoplay prevented until user interacts */ });
                 }
             });
             
