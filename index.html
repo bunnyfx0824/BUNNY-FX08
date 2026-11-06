@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BUNNY FX | Premium CC & Quality</title>
-    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Base & Variables */
         :root {
             --primary: #00f2fe;
             --secondary: #4facfe;
@@ -29,12 +27,10 @@
 
         h1, h2, h3, .logo { font-family: 'Rajdhani', sans-serif; }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
 
-        /* Animated Background Particles/Glow */
         .bg-glow {
             position: fixed;
             top: -50%; left: -50%;
@@ -50,7 +46,7 @@
             100% { transform: scale(1.2); }
         }
 
-        /* --- iOS LIQUID GLASS NAVBAR --- */
+        /* Navbar */
         header {
             display: flex;
             justify-content: space-between;
@@ -61,14 +57,12 @@
             top: 0;
             z-index: 1000;
             background: rgba(10, 10, 10, 0.4);
-            /* Deep Apple-style Blur */
             backdrop-filter: blur(25px) saturate(200%);
             -webkit-backdrop-filter: blur(25px) saturate(200%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.4s ease;
         }
 
-        /* Nav Menu Liquid Pill Container */
         nav {
             display: flex;
             gap: 8px;
@@ -82,28 +76,23 @@
         nav a {
             color: #aaa;
             text-decoration: none;
-            padding: 10px 22px;
+            padding: 10px 18px;
             font-size: 13px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             border-radius: 40px;
-            position: relative;
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            background: transparent;
         }
 
-        /* Liquid Glass Hover Effect */
         nav a:hover { 
             color: #fff; 
             background: rgba(255, 255, 255, 0.1);
-            /* Inner Glass glow */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255,255,255,0.2);
             transform: translateY(-2px);
             text-shadow: 0 0 8px rgba(255,255,255,0.5);
         }
 
-        /* Logo Layout & Animations */
         .logo-wrapper {
             display: flex;
             align-items: center;
@@ -131,35 +120,74 @@
         }
 
         @keyframes logo-glow {
-            0% { text-shadow: 0 0 10px rgba(0, 242, 254, 0.2); box-shadow: 0 0 10px rgba(0, 242, 254, 0.2); }
-            100% { text-shadow: 0 0 20px rgba(0, 242, 254, 0.6); box-shadow: 0 0 20px rgba(0, 242, 254, 0.6); }
+            0% { text-shadow: 0 0 10px rgba(0, 242, 254, 0.2); }
+            100% { text-shadow: 0 0 20px rgba(0, 242, 254, 0.6); }
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
-            height: 100vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 120px 20px 40px;
         }
         .hero h1 {
-            font-size: 5rem;
+            font-size: 4.8rem;
             line-height: 1.1;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 4px;
-            animation: slideUp 1s cubic-bezier(0.1, 0.8, 0.2, 1);
         }
         .hero p {
             font-size: 1.2rem;
             color: #888;
             max-width: 600px;
-            animation: slideUp 1.2s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
-            opacity: 0;
-            transform: translateY(30px);
+        }
+
+        /* Supported Apps Badges */
+        .supported-apps {
+            margin-top: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .supported-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+            font-weight: 600;
+        }
+        .app-badges {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .app-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #eee;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .app-pill span {
+            color: var(--primary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            background: rgba(0, 242, 254, 0.1);
+            padding: 2px 6px;
+            border-radius: 6px;
         }
 
         /* Scroll Animations */
@@ -173,20 +201,15 @@
             transform: translateY(0);
         }
 
-        @keyframes slideUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Sections */
         .section {
-            padding: 100px 20px;
+            padding: 80px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
         .section-title {
             text-align: center;
             font-size: 3rem;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             letter-spacing: 3px;
             color: #fff;
             position: relative;
@@ -201,13 +224,90 @@
             border-radius: 2px;
         }
 
-        /* Cards */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+        /* Interactive Before/After Slider */
+        .slider-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            height: 480px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            user-select: none;
+        }
+        .slider-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+        .img-before img {
+            width: 850px;
+            max-width: unset;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background: var(--primary);
+            z-index: 3;
+            cursor: ew-resize;
+            box-shadow: 0 0 15px var(--primary);
+        }
+        .handle-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #000;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+        }
+        .slider-tag {
+            position: absolute;
+            bottom: 20px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 20px;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1px;
+            z-index: 4;
+            backdrop-filter: blur(10px);
+        }
+        .slider-tag.raw { left: 20px; background: rgba(0,0,0,0.6); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+        .slider-tag.fx { right: 20px; background: rgba(0, 242, 254, 0.2); color: var(--primary); border: 1px solid var(--primary); }
 
+        /* Video Showcase */
         .card {
             background: var(--surface);
             border-radius: 16px;
@@ -217,36 +317,19 @@
             transition: all 0.5s ease;
         }
         .card:hover {
-            transform: translateY(-15px) scale(1.02);
+            transform: translateY(-10px);
             border-color: var(--primary);
             box-shadow: 0 15px 40px rgba(0, 242, 254, 0.15);
         }
 
         .media-box {
             width: 100%;
-            height: 300px;
             border-radius: 12px;
             object-fit: cover;
-            margin-bottom: 20px;
             background: #000;
         }
 
-        .badge {
-            position: absolute;
-            top: 35px;
-            right: 35px;
-            padding: 6px 16px;
-            font-size: 14px;
-            font-weight: 700;
-            border-radius: 30px;
-            font-family: 'Rajdhani', sans-serif;
-            letter-spacing: 1px;
-            z-index: 10;
-        }
-        .badge.before { background: #333; color: #fff; }
-        .badge.after { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); }
-
-        /* Payment Section & Price Tag */
+        /* Payment */
         .payment-card {
             background: linear-gradient(145deg, #121212, #1a1a1a);
             border-radius: 20px;
@@ -315,10 +398,56 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .copy-btn:hover {
-            background: #fff;
-            box-shadow: 0 0 20px var(--primary);
+        .copy-btn:hover { background: #fff; box-shadow: 0 0 20px var(--primary); }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            user-select: none;
+        }
+        .faq-question:hover { color: var(--primary); }
+        .faq-arrow {
+            transition: transform 0.3s ease;
+            color: var(--primary);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 25px;
+            color: #888;
+            line-height: 1.6;
+            transition: all 0.3s cubic-bezier(0, 1, 0, 1);
+        }
+        .faq-item.active {
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-bottom: 20px;
+            transition: all 0.3s cubic-bezier(1, 0, 1, 0);
+        }
+        .faq-item.active .faq-arrow { transform: rotate(180deg); }
 
         /* Support Section */
         .support-container {
@@ -350,7 +479,6 @@
         .support-btn.insta:hover { background: #f093fb; box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4); }
         .support-btn.discord:hover { background: #5865F2; box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4); }
 
-        /* Footer */
         footer {
             background: #000;
             padding: 30px;
@@ -362,8 +490,9 @@
             .hero h1 { font-size: 3rem; }
             header { flex-direction: column; gap: 15px; padding: 15px; }
             nav { width: 100%; justify-content: space-between; padding: 5px; }
-            nav a { padding: 8px 12px; font-size: 11px; }
+            nav a { padding: 8px 10px; font-size: 10px; }
             .upi-box { flex-direction: column; }
+            .slider-wrapper { height: 260px; }
         }
     </style>
 </head>
@@ -377,9 +506,10 @@
             <div class="logo">BUNNY FX</div>
         </div>
         <nav>
-            <a href="#images">Images</a>
-            <a href="#video">CC Video</a>
-            <a href="#access">Get Access</a>
+            <a href="#compare">Compare</a>
+            <a href="#video">Video</a>
+            <a href="#access">Price</a>
+            <a href="#faq">FAQ</a>
             <a href="#support">Support</a>
         </nav>
     </header>
@@ -387,24 +517,36 @@
     <section class="hero">
         <h1>Elevate Your Content</h1>
         <p>Ultra-Premium Color Correction (CC) and Quality Enhancements designed exclusively for top-tier Esports Montages.</p>
+        
+        <!-- Supported Apps Badges -->
+        <div class="supported-apps">
+            <div class="supported-title">Optimized & Supported In</div>
+            <div class="app-badges">
+                <div class="app-pill">⚡ Alight Motion <span>Android & iOS</span></div>
+                <div class="app-pill">🎬 CapCut <span>Android & iOS</span></div>
+            </div>
+        </div>
     </section>
 
-    <!-- Images Showcase -->
-    <section id="images" class="section reveal">
-        <h2 class="section-title">Visual Comparison</h2>
-        <div class="grid-container">
-            <div class="card">
-                <span class="badge before">RAW</span>
-                <img src="before.jpg" alt="Before" class="media-box">
-                <h3>Without CC</h3>
-                <p style="color: #888; font-size: 0.95rem; margin-top: 10px;">The original gameplay footage lacking depth and color.</p>
+    <!-- Interactive Before/After Comparison Slider -->
+    <section id="compare" class="section reveal slider-section">
+        <h2 class="section-title">Interactive Comparison</h2>
+        <p style="color: #888; text-align: center; margin-bottom: 25px;">Drag the center slider to see the difference.</p>
+        
+        <div class="slider-wrapper" id="sliderWrapper">
+            <!-- After Image (Background) -->
+            <img src="after.jpg" alt="After CC" class="slider-img">
+            <span class="slider-tag fx">BUNNY FX QUALITY</span>
+
+            <!-- Before Image (Clipped Layer) -->
+            <div class="img-before" id="beforeLayer">
+                <img src="before.jpg" alt="Before CC" id="beforeImg">
             </div>
-            
-            <div class="card">
-                <span class="badge after">BUNNY FX</span>
-                <img src="after.jpg" alt="After" class="media-box">
-                <h3>Premium CC + Quality</h3>
-                <p style="color: #888; font-size: 0.95rem; margin-top: 10px;">Applied professional CC, sharpening, and glowing contrasts.</p>
+            <span class="slider-tag raw">RAW FOOTAGE</span>
+
+            <!-- Center Slider Handle -->
+            <div class="slider-handle" id="sliderHandle">
+                <div class="handle-circle">↔</div>
             </div>
         </div>
     </section>
@@ -412,11 +554,11 @@
     <!-- CC Video Showcase -->
     <section id="video" class="section reveal">
         <h2 class="section-title">CC & Quality Video Showcase</h2>
-        <div class="grid-container" style="display: flex; justify-content: center;">
-            <div class="card" style="width: 100%; max-width: 800px;">
-                <video src="cc-quality.mp4" autoplay loop muted playsinline controls class="media-box" style="height: auto; max-height: 450px;"></video>
-                <h3 style="margin-top: 10px; font-size: 1.8rem; color: var(--primary);">Live Gameplay Quality</h3>
-                <p style="color: #888; font-size: 1rem; margin-top: 10px;">See the magic in motion. This video demonstrates the exact CC and Quality effects applied to real gameplay.</p>
+        <div style="display: flex; justify-content: center;">
+            <div class="card" style="width: 100%; max-width: 850px;">
+                <video src="cc-quality.mp4" autoplay loop muted playsinline controls class="media-box" style="height: auto; max-height: 480px;"></video>
+                <h3 style="margin-top: 15px; font-size: 1.8rem; color: var(--primary);">Live Gameplay Quality</h3>
+                <p style="color: #888; font-size: 1rem; margin-top: 10px;">Watch the real-time visual enhancement in action across motion gameplay.</p>
             </div>
         </div>
     </section>
@@ -441,10 +583,56 @@
         </div>
     </section>
 
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="section reveal">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Payment ke baad file kaise milegi?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Payment complete karke screenshot hamare Discord server ya Instagram par DM karein. Payment verify hote hi aapko private Google Drive link bhej diya jayega.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Kya ye Android aur iPhone dono me work karega?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Haan! Ye pack Alight Motion aur CapCut dono ke Android aur iOS versions ke liye fully compatible aur tested hai.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Pack me kya kya shamil hai?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Is pack me crisp quality settings, cinematic color correction (CC) presets, aur setup guide shamil hai jisse aapka gameplay ultra-smooth aur glowing lagega.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Agar CC apply karne me issue aaye toh kya support milega?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Bilkul! Aap hamare Discord server par ticket create kar sakte hain ya Instagram par DM kar sakte hain, hum setting apply karne me poori madad karenge.
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Help & Support -->
     <section id="support" class="section reveal">
         <h2 class="section-title">Help & Support</h2>
-        <p style="text-align: center; color: #888; margin-bottom: 40px; font-size: 1.1rem;">Need help with the payment or applying the CC? Reach out to us directly!</p>
+        <p style="text-align: center; color: #888; margin-bottom: 40px; font-size: 1.1rem;">Have any queries or need assistance? Reach out directly!</p>
         
         <div class="support-container">
             <a href="https://www.instagram.com/bxnnyfx?mdxt=MWIwbGw0YmkzMzY5cQ==" target="_blank" class="support-btn insta">
@@ -456,13 +644,13 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p style="color: #555; font-size: 0.9rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;">© 2026 BUNNY FX. CRAFTED FOR CREATORS.</p>
     </footer>
 
     <!-- Scripts -->
     <script>
+        // Copy UPI Function
         function copyUPI() {
             var upiText = document.getElementById("upi-text").innerText;
             navigator.clipboard.writeText(upiText).then(function() {
@@ -477,6 +665,7 @@
             });
         }
 
+        // Scroll Animations
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -490,6 +679,58 @@
         }
         window.addEventListener("scroll", reveal);
         reveal();
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll(".faq-item");
+        faqItems.forEach(item => {
+            item.querySelector(".faq-question").addEventListener("click", () => {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove("active");
+                });
+                item.classList.toggle("active");
+            });
+        });
+
+        // Before/After Slider Drag Handling
+        const slider = document.getElementById("sliderWrapper");
+        const beforeLayer = document.getElementById("beforeLayer");
+        const beforeImg = document.getElementById("beforeImg");
+        const handle = document.getElementById("sliderHandle");
+
+        function updateSliderWidth() {
+            beforeImg.style.width = slider.offsetWidth + "px";
+        }
+        window.addEventListener("resize", updateSliderWidth);
+        updateSliderWidth();
+
+        let isDragging = false;
+
+        function setSliderPosition(x) {
+            const rect = slider.getBoundingClientRect();
+            let pos = x - rect.left;
+            if (pos < 0) pos = 0;
+            if (pos > rect.width) pos = rect.width;
+            
+            const percentage = (pos / rect.width) * 100;
+            beforeLayer.style.width = percentage + "%";
+            handle.style.left = percentage + "%";
+        }
+
+        // Mouse Events
+        slider.addEventListener("mousedown", () => isDragging = true);
+        window.addEventListener("mouseup", () => isDragging = false);
+        window.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+            setSliderPosition(e.clientX);
+        });
+
+        // Touch Events (Mobile)
+        slider.addEventListener("touchstart", () => isDragging = true);
+        window.addEventListener("touchend", () => isDragging = false);
+        window.addEventListener("touchmove", (e) => {
+            if (!isDragging) return;
+            setSliderPosition(e.touches[0].clientX);
+        });
     </script>
 </body>
 </html>
