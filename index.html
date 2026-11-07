@@ -12,7 +12,7 @@
             --secondary: #4facfe;
             --accent: #ff0844;
             --bg-base: #050507;
-            --text-main: #f5f5f7; /* Apple White */
+            --text-main: #f5f5f7; 
             --text-muted: #a1a1a6;
             
             /* Liquid Glass Theme */
@@ -76,12 +76,12 @@
         header {
             display: flex; justify-content: center; align-items: center;
             padding: 20px; position: fixed; width: 100%; top: 0; z-index: 1000;
-            pointer-events: none; /* Let clicks pass through empty space */
+            pointer-events: none; 
         }
         .nav-capsule {
             display: flex; align-items: center; justify-content: space-between; gap: 20px;
             padding: 8px 12px 8px 20px; width: 100%; max-width: 900px;
-            pointer-events: auto; /* Enable clicks on the navbar itself */
+            pointer-events: auto; 
             border-radius: 50px;
         }
         
@@ -237,10 +237,23 @@
         .faq-item.active .faq-answer { max-height: 300px; padding-bottom: 25px; }
         .faq-item.active .faq-arrow { transform: rotate(180deg); color: var(--primary);}
 
-        /* Support Section */
+        /* Animated Support Logos CSS */
         .support-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px;}
         .support-btn { display: flex; align-items: center; gap: 12px; padding: 16px 40px; font-size: 1.1rem; font-weight: 600; text-decoration: none; border-radius: 50px; transition: 0.4s; cursor: pointer; color: #fff; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);}
         .support-btn:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); }
+        
+        .anim-icon {
+            width: 26px; height: 26px;
+            animation: pulseBounce 2.5s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
+        }
+        @keyframes pulseBounce {
+            0% { transform: scale(1) translateY(0); }
+            30% { transform: scale(1.15) translateY(-4px); }
+            50% { transform: scale(1) translateY(0); }
+            100% { transform: scale(1) translateY(0); }
+        }
+        .insta-icon { filter: drop-shadow(0 0 10px rgba(225, 48, 108, 0.7)); }
+        .discord-icon { filter: drop-shadow(0 0 10px rgba(88, 101, 242, 0.7)); }
         
         footer { padding: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px;}
 
@@ -264,9 +277,10 @@
         <div class="orb orb-3"></div>
     </div>
 
-    <!-- UI Sounds -->
+    <!-- UI & VIP iOS Success Sounds -->
     <audio id="hoverSound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3" preload="auto"></audio>
     <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3" preload="auto"></audio>
+    <audio id="successSound" src="https://www.myinstants.com/media/sounds/iphone-notification.mp3" preload="auto"></audio>
 
     <!-- VIP LOGIN/SIGNUP SCREEN -->
     <div id="auth-screen">
@@ -439,9 +453,17 @@
         <section id="support" class="section">
             <h2 class="section-title">Support</h2>
             <p style="text-align: center; color: var(--text-muted); font-size: 1.1rem;">Need assistance? We are here to help.</p>
+            
+            <!-- NEW ANIMATED SUPPORT LOGOS -->
             <div class="support-container">
-                <a href="https://www.instagram.com/bxnnyfx" target="_blank" class="support-btn interactable">📷 Instagram</a>
-                <a href="https://discord.gg/MtWgkgf4UA" target="_blank" class="support-btn interactable">🎮 Discord</a>
+                <a href="https://www.instagram.com/bxnnyfx" target="_blank" class="support-btn interactable">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="anim-icon insta-icon" alt="Instagram">
+                    Instagram
+                </a>
+                <a href="https://discord.gg/MtWgkgf4UA" target="_blank" class="support-btn interactable">
+                    <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6918e57475a843f59f_icon_clyde_blurple_RGB.svg" class="anim-icon discord-icon" alt="Discord">
+                    Discord
+                </a>
             </div>
         </section>
 
@@ -450,7 +472,7 @@
         </footer>
     </div>
 
-    <!-- FIREBASE & LOGIC SCRIPT (DO NOT CHANGE) -->
+    <!-- FIREBASE & LOGIC SCRIPT -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -488,6 +510,10 @@
         const profileAvatar = document.getElementById("profile-avatar");
         const profileName = document.getElementById("profile-name");
         const profileEmail = document.getElementById("profile-email");
+        
+        // Success Audio Reference
+        const successSound = document.getElementById("successSound");
+        successSound.volume = 0.8;
 
         let isLoginMode = true;
 
@@ -503,22 +529,27 @@
             document.getElementById("toggle-mode-btn").addEventListener("click", () => toggleBtn.click());
         });
 
+        // Trigger iPhone Notification on Login Success
         actionBtn.addEventListener("click", () => {
             const email = emailInput.value.trim(); const password = passInput.value.trim();
             if(!email || !password) { errorMsg.innerText = "Please enter email and password."; return; }
             actionBtn.innerText = "Processing...";
             if (isLoginMode) {
                 signInWithEmailAndPassword(auth, email, password)
+                .then(() => { successSound.currentTime = 0; successSound.play().catch(()=>{}); })
                 .catch(error => { errorMsg.innerText = error.message.replace("Firebase:", ""); actionBtn.innerText = "LOG IN"; });
             } else {
                 createUserWithEmailAndPassword(auth, email, password)
+                .then(() => { successSound.currentTime = 0; successSound.play().catch(()=>{}); })
                 .catch(error => { errorMsg.innerText = error.message.replace("Firebase:", ""); actionBtn.innerText = "SIGN UP"; });
             }
         });
 
+        // Trigger iPhone Notification on Google Login Success
         googleBtn.addEventListener("click", () => {
             errorMsg.innerText = ""; googleBtn.innerHTML = "Connecting...";
             signInWithPopup(auth, googleProvider)
+            .then(() => { successSound.currentTime = 0; successSound.play().catch(()=>{}); })
             .catch((error) => {
                 errorMsg.innerText = error.message.replace("Firebase:", "");
                 googleBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="google-icon"> Continue with Google';
