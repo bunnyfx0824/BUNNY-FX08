@@ -107,7 +107,23 @@
             transition: 0.3s; font-size: 1rem;
         }
         .auth-btn:hover { background: #fff; box-shadow: 0 0 20px var(--primary); }
-        .auth-toggle { margin-top: 15px; color: #aaa; font-size: 0.9rem; cursor: pointer; }
+        
+        /* GOOGLE LOGIN BUTTON CSS */
+        .google-btn {
+            width: 100%; padding: 12px; margin-top: 15px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; border-radius: 8px; font-weight: 600; cursor: pointer;
+            display: flex; justify-content: center; align-items: center; gap: 12px;
+            transition: 0.3s; font-family: 'Inter'; font-size: 0.95rem;
+        }
+        .google-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--primary); box-shadow: 0 0 15px rgba(0,242,254,0.2); }
+        .google-icon { width: 20px; height: 20px; }
+        
+        .divider { display: flex; align-items: center; margin: 20px 0; }
+        .divider hr { flex: 1; border: none; border-top: 1px solid rgba(255,255,255,0.1); }
+        .divider span { color: #888; font-size: 0.8rem; margin: 0 10px; font-weight: 600; }
+
+        .auth-toggle { margin-top: 20px; color: #aaa; font-size: 0.9rem; cursor: pointer; }
         .auth-toggle span { color: var(--primary); font-weight: bold; }
         .auth-error { color: var(--accent); font-size: 0.85rem; margin-bottom: 10px; min-height: 20px;}
 
@@ -235,7 +251,6 @@
 
             <input type="email" id="email-input" class="auth-input" placeholder="Email Address">
             
-            <!-- SHOW/HIDE PASSWORD CONTAINER -->
             <div class="password-container">
                 <input type="password" id="password-input" class="auth-input" placeholder="Password (Min 6 chars)" style="margin-bottom: 15px;">
                 <span id="toggle-password" class="toggle-password interactable">👁️</span>
@@ -243,11 +258,21 @@
             
             <button id="auth-action-btn" class="auth-btn interactable">LOG IN</button>
             
+            <!-- GOOGLE LOGIN BUTTON -->
+            <div class="divider">
+                <hr><span>OR</span><hr>
+            </div>
+            
+            <button id="google-auth-btn" class="google-btn interactable">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="google-icon">
+                Continue with Google
+            </button>
+            
             <p class="auth-toggle" id="auth-toggle-text">New here? <span id="toggle-mode-btn">Create Account</span></p>
         </div>
     </div>
 
-    <!-- MAIN WEBSITE CONTENT (Hidden till Login) -->
+    <!-- MAIN WEBSITE CONTENT -->
     <div id="main-content">
         <header>
             <div class="logo-wrapper interactable">
@@ -405,27 +430,28 @@
 
     <!-- FIREBASE MODULE & LOGIC -->
     <script type="module">
-        // Import Firebase Functions via CDN (Modules)
+        // Import Firebase Functions including Google Auth
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         // ==========================================
-        // USER FIREBASE CONFIGURATION 
+        // NEW USER FIREBASE CONFIGURATION 
         // ==========================================
         const firebaseConfig = {
-          apiKey: "AIzaSyCz9ILHWoeNgVp_6vcKkc6u9ospwYNBjHo",
-          authDomain: "amit-mahanta.firebaseapp.com",
-          projectId: "amit-mahanta",
-          storageBucket: "amit-mahanta.firebasestorage.app",
-          messagingSenderId: "177824600545",
-          appId: "1:177824600545:web:cf749347913bf84ccf02a0",
-          measurementId: "G-CGJQE4ZFQM"
+          apiKey: "AIzaSyAMrfKoIxoXUjbYeWQIhL8J_llUmFf72mA",
+          authDomain: "bunny-fx.firebaseapp.com",
+          projectId: "bunny-fx",
+          storageBucket: "bunny-fx.firebasestorage.app",
+          messagingSenderId: "1093836184887",
+          appId: "1:1093836184887:web:d3f9bfbe0c075d3ed3ceb2",
+          measurementId: "G-NPMVBG5G5E"
         };
         // ==========================================
 
         // Initialize Firebase & Auth
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
 
         // UI Elements
         const authScreen = document.getElementById("auth-screen");
@@ -433,6 +459,7 @@
         const emailInput = document.getElementById("email-input");
         const passInput = document.getElementById("password-input");
         const actionBtn = document.getElementById("auth-action-btn");
+        const googleBtn = document.getElementById("google-auth-btn");
         const toggleBtn = document.getElementById("toggle-mode-btn");
         const toggleText = document.getElementById("auth-toggle-text");
         const subtitle = document.getElementById("auth-subtitle");
@@ -457,7 +484,7 @@
             document.getElementById("toggle-mode-btn").addEventListener("click", () => toggleBtn.click());
         });
 
-        // Handle Authentication (Login/Register)
+        // Email/Password Auth
         actionBtn.addEventListener("click", () => {
             const email = emailInput.value.trim();
             const password = passInput.value.trim();
@@ -484,6 +511,17 @@
             }
         });
 
+        // Google Auth Logic
+        googleBtn.addEventListener("click", () => {
+            errorMsg.innerText = "";
+            googleBtn.innerHTML = "Connecting...";
+            signInWithPopup(auth, googleProvider)
+            .catch((error) => {
+                errorMsg.innerText = error.message.replace("Firebase:", "");
+                googleBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="google-icon"> Continue with Google';
+            });
+        });
+
         // Logout
         logoutBtn.addEventListener("click", () => {
             signOut(auth);
@@ -504,9 +542,9 @@
                 authScreen.style.display = "flex";
                 authScreen.style.opacity = "1";
                 actionBtn.innerText = isLoginMode ? "LOG IN" : "SIGN UP";
+                googleBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="google-icon"> Continue with Google';
                 emailInput.value = "";
                 passInput.value = "";
-                // Reset password icon to eye
                 passInput.setAttribute("type", "password");
                 const togglePassword = document.getElementById("toggle-password");
                 if(togglePassword) togglePassword.innerText = "👁️";
