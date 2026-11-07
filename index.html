@@ -80,35 +80,20 @@
         }
         .auth-input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(0,242,254,0.3); }
         
-        /* PASSWORD SHOW/HIDE ICON CSS */
-        .password-container {
-            position: relative;
-            width: 100%;
-        }
+        .password-container { position: relative; width: 100%; }
         .toggle-password {
-            position: absolute;
-            right: 15px;
-            top: 15px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            user-select: none;
-            transition: 0.3s;
-            opacity: 0.7;
+            position: absolute; right: 15px; top: 15px; cursor: pointer;
+            font-size: 1.2rem; user-select: none; transition: 0.3s; opacity: 0.7;
         }
-        .toggle-password:hover {
-            opacity: 1;
-            transform: scale(1.1);
-            text-shadow: 0 0 10px var(--primary);
-        }
+        .toggle-password:hover { opacity: 1; transform: scale(1.1); text-shadow: 0 0 10px var(--primary); }
 
         .auth-btn {
             width: 100%; padding: 15px; background: var(--primary); color: #000;
             border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
-            transition: 0.3s; font-size: 1rem;
+            transition: 0.3s; font-size: 1rem; text-transform: uppercase;
         }
         .auth-btn:hover { background: #fff; box-shadow: 0 0 20px var(--primary); }
         
-        /* GOOGLE LOGIN BUTTON CSS */
         .google-btn {
             width: 100%; padding: 12px; margin-top: 15px;
             background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
@@ -127,7 +112,36 @@
         .auth-toggle span { color: var(--primary); font-weight: bold; }
         .auth-error { color: var(--accent); font-size: 0.85rem; margin-bottom: 10px; min-height: 20px;}
 
-        /* Main Content (Hidden Initially) */
+        /* --- PROFILE DASHBOARD MODAL --- */
+        .profile-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(15px);
+            display: none; justify-content: center; align-items: center; z-index: 10001;
+        }
+        .profile-card {
+            background: var(--surface); border: 1px solid rgba(0, 242, 254, 0.4);
+            border-radius: 20px; padding: 40px; width: 90%; max-width: 420px;
+            text-align: center; position: relative; box-shadow: 0 10px 40px rgba(0,242,254,0.15);
+        }
+        .close-btn {
+            position: absolute; top: 15px; right: 20px; font-size: 1.4rem;
+            cursor: pointer; color: #888; transition: 0.3s;
+        }
+        .close-btn:hover { color: var(--accent); transform: scale(1.1); }
+        .profile-avatar {
+            width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--primary);
+            margin: 0 auto 15px; object-fit: cover; box-shadow: 0 0 20px rgba(0,242,254,0.4);
+        }
+        .purchase-history {
+            background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.15);
+            border-radius: 12px; padding: 20px; text-align: left; margin-top: 25px;
+        }
+        .history-item { display: flex; gap: 12px; align-items: flex-start; }
+        .status-dot { width: 14px; height: 14px; background: #ffaa00; border-radius: 50%; margin-top: 4px; box-shadow: 0 0 10px #ffaa00; flex-shrink: 0;}
+        .history-text strong { color: #fff; font-size: 1rem; letter-spacing: 0.5px; }
+        .history-text p { color: #aaa; font-size: 0.85rem; margin-top: 6px; line-height: 1.4; }
+
+        /* Main Content */
         #main-content { display: none; }
 
         /* Navbar */
@@ -146,13 +160,16 @@
             font-weight: 600; text-transform: uppercase; border-radius: 40px; transition: 0.4s; cursor: pointer;
         }
         nav a:hover, #logout-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.1); box-shadow: inset 0 1px 1px rgba(255,255,255,0.2); }
+        
+        #profile-btn { color: var(--primary); border: 1px solid transparent; }
+        #profile-btn:hover { border-color: var(--primary); background: rgba(0,242,254,0.1); }
         #logout-btn { color: var(--accent); font-weight: bold; }
 
         .logo-wrapper { display: flex; align-items: center; gap: 12px; }
         .brand-logo { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
         .logo { font-size: 32px; font-weight: 700; background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
 
-        /* Hero */
+        /* Sections */
         .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px 40px; }
         .hero h1 { font-size: 4.8rem; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 4px; }
         
@@ -201,10 +218,9 @@
         .upi-id { background: #000; padding: 12px 25px; border-radius: 8px; font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.1); }
         .copy-btn { background: var(--primary); color: #000; border: none; padding: 12px 25px; font-weight: 700; border-radius: 8px; cursor: pointer; transition: 0.3s; }
 
-        /* Media Box for Video */
         .media-box { width: 100%; border-radius: 12px; object-fit: cover; background: #000; border: 1px solid rgba(255, 255, 255, 0.05); }
 
-        /* FAQ */
+        /* FAQ & Support */
         .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
         .faq-item { background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; overflow: hidden; transition: 0.3s; }
         .faq-question { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.1rem; }
@@ -214,7 +230,6 @@
         .faq-item.active .faq-answer { max-height: 300px; padding-bottom: 20px; }
         .faq-item.active .faq-arrow { transform: rotate(180deg); }
 
-        /* Support Section */
         .support-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
         .support-btn { display: flex; align-items: center; gap: 10px; padding: 15px 40px; font-size: 1.2rem; font-weight: 700; font-family: 'Rajdhani'; text-transform: uppercase; text-decoration: none; border-radius: 50px; transition: 0.4s; cursor: pointer; }
         .support-btn.insta { background: transparent; color: #f093fb; border: 2px solid #f093fb; }
@@ -258,7 +273,6 @@
             
             <button id="auth-action-btn" class="auth-btn interactable">LOG IN</button>
             
-            <!-- GOOGLE LOGIN BUTTON -->
             <div class="divider">
                 <hr><span>OR</span><hr>
             </div>
@@ -272,6 +286,36 @@
         </div>
     </div>
 
+    <!-- PROFILE DASHBOARD MODAL -->
+    <div id="profile-dashboard" class="profile-overlay">
+        <div class="profile-card interactable">
+            <span id="close-profile" class="close-btn interactable">✖</span>
+            
+            <!-- User Avatar & Details -->
+            <img id="profile-avatar" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="Profile" class="profile-avatar">
+            <h3 id="profile-name" style="font-family: 'Rajdhani'; font-size: 1.8rem; letter-spacing: 1px;">VIP Member</h3>
+            <p id="profile-email" style="color: #aaa; margin-bottom: 5px; font-size: 0.95rem;">email@example.com</p>
+            
+            <!-- Purchase History Status -->
+            <div class="purchase-history">
+                <h4 style="color: var(--primary); margin-bottom: 15px; font-family: 'Rajdhani'; font-size: 1.2rem; letter-spacing: 1px; border-bottom: 1px solid rgba(0,242,254,0.2); padding-bottom: 8px;">MY PACKS & HISTORY</h4>
+                
+                <div class="history-item">
+                    <span class="status-dot"></span>
+                    <div class="history-text">
+                        <strong>Pending Verification</strong>
+                        <p>Purchase not yet verified. Please submit your UPI payment screenshot on our Discord Server to unlock and access your packs here.</p>
+                    </div>
+                </div>
+
+                <!-- Direct Discord Verification Button -->
+                <a href="https://discord.gg/MtWgkgf4UA" target="_blank" class="auth-btn interactable" style="text-decoration: none; display: block; margin-top: 20px; font-size: 0.9rem; padding: 12px; background: #5865F2; color: #fff;">
+                    SUBMIT SCREENSHOT ON DISCORD
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- MAIN WEBSITE CONTENT -->
     <div id="main-content">
         <header>
@@ -281,9 +325,9 @@
             </div>
             <nav>
                 <a href="#compare" class="interactable">Compare</a>
-                <a href="#video" class="interactable">Video</a>
                 <a href="#access" class="interactable">Pricing</a>
-                <a href="#support" class="interactable">Support</a>
+                <!-- NEW MY PROFILE BUTTON -->
+                <a id="profile-btn" class="interactable">My Profile</a>
                 <a id="logout-btn" class="interactable">Logout</a>
             </nav>
         </header>
@@ -386,7 +430,6 @@
                         Payment complete karke screenshot hamare Discord server ya Instagram par DM karein. Payment verify hote hi aapko private Google Drive link bhej diya jayega.
                     </div>
                 </div>
-
                 <div class="faq-item interactable">
                     <div class="faq-question">
                         <span>Kya ye Android aur iPhone dono me work karega?</span>
@@ -394,16 +437,6 @@
                     </div>
                     <div class="faq-answer">
                         Haan! Ye pack Alight Motion aur CapCut dono ke Android aur iOS versions ke liye fully compatible aur tested hai.
-                    </div>
-                </div>
-
-                <div class="faq-item interactable">
-                    <div class="faq-question">
-                        <span>Basic aur Elite pack me kya farq hai?</span>
-                        <span class="faq-arrow">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        Basic me aapko sirf CC file milegi. Elite Bundle me aapko Ultra 4K Quality setup, tutorials, aur priority fast reply support milega.
                     </div>
                 </div>
             </div>
@@ -414,12 +447,8 @@
             <p style="text-align: center; color: #888; margin-bottom: 40px; font-size: 1.1rem;">Have any queries or need assistance? Reach out directly!</p>
             
             <div class="support-container">
-                <a href="https://www.instagram.com/bxnnyfx?mdxt=MWIwbGw0YmkzMzY5cQ==" target="_blank" class="support-btn insta interactable">
-                    📷 Instagram
-                </a>
-                <a href="https://discord.gg/MtWgkgf4UA" target="_blank" class="support-btn discord interactable">
-                    🎮 Discord Server
-                </a>
+                <a href="https://www.instagram.com/bxnnyfx?mdxt=MWIwbGw0YmkzMzY5cQ==" target="_blank" class="support-btn insta interactable">📷 Instagram</a>
+                <a href="https://discord.gg/MtWgkgf4UA" target="_blank" class="support-btn discord interactable">🎮 Discord Server</a>
             </div>
         </section>
 
@@ -428,15 +457,12 @@
         </footer>
     </div>
 
-    <!-- FIREBASE MODULE & LOGIC -->
+    <!-- FIREBASE & LOGIC SCRIPT -->
     <script type="module">
-        // Import Firebase Functions including Google Auth
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        // ==========================================
-        // NEW USER FIREBASE CONFIGURATION 
-        // ==========================================
+        // FIREBASE CONFIGURATION
         const firebaseConfig = {
           apiKey: "AIzaSyAMrfKoIxoXUjbYeWQIhL8J_llUmFf72mA",
           authDomain: "bunny-fx.firebaseapp.com",
@@ -446,14 +472,12 @@
           appId: "1:1093836184887:web:d3f9bfbe0c075d3ed3ceb2",
           measurementId: "G-NPMVBG5G5E"
         };
-        // ==========================================
 
-        // Initialize Firebase & Auth
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const googleProvider = new GoogleAuthProvider();
 
-        // UI Elements
+        // Elements
         const authScreen = document.getElementById("auth-screen");
         const mainContent = document.getElementById("main-content");
         const emailInput = document.getElementById("email-input");
@@ -464,11 +488,20 @@
         const toggleText = document.getElementById("auth-toggle-text");
         const subtitle = document.getElementById("auth-subtitle");
         const errorMsg = document.getElementById("auth-error-msg");
+        
+        // Profile Elements
         const logoutBtn = document.getElementById("logout-btn");
+        const profileBtn = document.getElementById("profile-btn");
+        const profileDashboard = document.getElementById("profile-dashboard");
+        const closeProfile = document.getElementById("close-profile");
+        
+        const profileAvatar = document.getElementById("profile-avatar");
+        const profileName = document.getElementById("profile-name");
+        const profileEmail = document.getElementById("profile-email");
 
         let isLoginMode = true;
 
-        // Toggle Login / Signup Mode
+        // Toggle Modes
         toggleBtn.addEventListener("click", () => {
             isLoginMode = !isLoginMode;
             errorMsg.innerText = "";
@@ -484,37 +517,24 @@
             document.getElementById("toggle-mode-btn").addEventListener("click", () => toggleBtn.click());
         });
 
-        // Email/Password Auth
+        // Email Auth
         actionBtn.addEventListener("click", () => {
             const email = emailInput.value.trim();
             const password = passInput.value.trim();
-            
-            if(!email || !password) {
-                errorMsg.innerText = "Please enter email and password.";
-                return;
-            }
-
+            if(!email || !password) { errorMsg.innerText = "Please enter email and password."; return; }
             actionBtn.innerText = "Processing...";
-            
             if (isLoginMode) {
                 signInWithEmailAndPassword(auth, email, password)
-                .catch(error => {
-                    errorMsg.innerText = error.message.replace("Firebase:", "");
-                    actionBtn.innerText = "LOG IN";
-                });
+                .catch(error => { errorMsg.innerText = error.message.replace("Firebase:", ""); actionBtn.innerText = "LOG IN"; });
             } else {
                 createUserWithEmailAndPassword(auth, email, password)
-                .catch(error => {
-                    errorMsg.innerText = error.message.replace("Firebase:", "");
-                    actionBtn.innerText = "SIGN UP";
-                });
+                .catch(error => { errorMsg.innerText = error.message.replace("Firebase:", ""); actionBtn.innerText = "SIGN UP"; });
             }
         });
 
-        // Google Auth Logic
+        // Google Auth
         googleBtn.addEventListener("click", () => {
-            errorMsg.innerText = "";
-            googleBtn.innerHTML = "Connecting...";
+            errorMsg.innerText = ""; googleBtn.innerHTML = "Connecting...";
             signInWithPopup(auth, googleProvider)
             .catch((error) => {
                 errorMsg.innerText = error.message.replace("Firebase:", "");
@@ -522,29 +542,38 @@
             });
         });
 
-        // Logout
-        logoutBtn.addEventListener("click", () => {
-            signOut(auth);
+        // Dashboard Toggle
+        profileBtn.addEventListener("click", () => {
+            profileDashboard.style.display = "flex";
+        });
+        closeProfile.addEventListener("click", () => {
+            profileDashboard.style.display = "none";
         });
 
-        // Listen for Login State Changes
+        // Logout
+        logoutBtn.addEventListener("click", () => signOut(auth));
+
+        // Auth State Listener
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // User is logged in
+                // Update Profile Details
+                profileEmail.innerText = user.email;
+                profileName.innerText = user.displayName || "VIP Member";
+                profileAvatar.src = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+                
                 authScreen.style.opacity = "0";
                 setTimeout(() => {
                     authScreen.style.display = "none";
                     mainContent.style.display = "block";
                 }, 500);
             } else {
-                // User is logged out
                 mainContent.style.display = "none";
+                profileDashboard.style.display = "none";
                 authScreen.style.display = "flex";
                 authScreen.style.opacity = "1";
                 actionBtn.innerText = isLoginMode ? "LOG IN" : "SIGN UP";
                 googleBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="google-icon"> Continue with Google';
-                emailInput.value = "";
-                passInput.value = "";
+                emailInput.value = ""; passInput.value = "";
                 passInput.setAttribute("type", "password");
                 const togglePassword = document.getElementById("toggle-password");
                 if(togglePassword) togglePassword.innerText = "👁️";
@@ -552,9 +581,8 @@
         });
     </script>
     
-    <!-- Utilities Script -->
+    <!-- UI Utils Script -->
     <script>
-        // UI Sound Script
         const hoverSound = document.getElementById('hoverSound');
         const clickSound = document.getElementById('clickSound');
         hoverSound.volume = 0.15; clickSound.volume = 0.30;
@@ -562,22 +590,18 @@
         document.addEventListener('mouseover', (e) => {
             if(e.target.closest('.interactable')) {
                 hoverSound.currentTime = 0; 
-                let playPromise = hoverSound.play();
-                if (playPromise !== undefined) playPromise.catch(()=>{});
+                let p = hoverSound.play(); if (p !== undefined) p.catch(()=>{});
             }
         });
         document.addEventListener('click', (e) => {
             if(e.target.closest('.interactable')) {
                 clickSound.currentTime = 0; 
-                let playPromise = clickSound.play();
-                if (playPromise !== undefined) playPromise.catch(()=>{});
+                let p = clickSound.play(); if (p !== undefined) p.catch(()=>{});
             }
         });
 
-        // Show/Hide Password Logic
         const togglePassword = document.getElementById("toggle-password");
         const passwordInput = document.getElementById("password-input");
-
         if(togglePassword && passwordInput) {
             togglePassword.addEventListener("click", function () {
                 const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
@@ -586,70 +610,45 @@
             });
         }
 
-        // Copy UPI Function
         function copyUPI() {
             var upiText = document.getElementById("upi-text").innerText;
             navigator.clipboard.writeText(upiText).then(function() {
                 var btn = document.querySelector('.copy-btn');
-                btn.innerText = 'COPIED!';
-                btn.style.background = '#00ff00';
-                btn.style.color = '#000';
-                setTimeout(function() {
-                    btn.innerText = 'COPY ID';
-                    btn.style.background = 'var(--primary)';
-                }, 2000);
+                btn.innerText = 'COPIED!'; btn.style.background = '#00ff00'; btn.style.color = '#000';
+                setTimeout(function() { btn.innerText = 'COPY ID'; btn.style.background = 'var(--primary)'; }, 2000);
             });
         }
 
-        // FAQ Accordion
         const faqItems = document.querySelectorAll(".faq-item");
         faqItems.forEach(item => {
             item.querySelector(".faq-question").addEventListener("click", () => {
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item) otherItem.classList.remove("active");
-                });
+                faqItems.forEach(otherItem => { if (otherItem !== item) otherItem.classList.remove("active"); });
                 item.classList.toggle("active");
             });
         });
 
-        // Before/After Slider Drag Handling
         const slider = document.getElementById("sliderWrapper");
         const beforeLayer = document.getElementById("beforeLayer");
         const beforeImg = document.getElementById("beforeImg");
         const handle = document.getElementById("sliderHandle");
 
-        function updateSliderWidth() {
-            if(beforeImg) beforeImg.style.width = slider.offsetWidth + "px";
-        }
-        window.addEventListener("resize", updateSliderWidth);
-        updateSliderWidth();
+        function updateSliderWidth() { if(beforeImg) beforeImg.style.width = slider.offsetWidth + "px"; }
+        window.addEventListener("resize", updateSliderWidth); updateSliderWidth();
 
         let isDragging = false;
-
         function setSliderPosition(x) {
             const rect = slider.getBoundingClientRect();
-            let pos = x - rect.left;
-            if (pos < 0) pos = 0;
-            if (pos > rect.width) pos = rect.width;
+            let pos = x - rect.left; if (pos < 0) pos = 0; if (pos > rect.width) pos = rect.width;
             const percentage = (pos / rect.width) * 100;
-            beforeLayer.style.width = percentage + "%";
-            handle.style.left = percentage + "%";
+            beforeLayer.style.width = percentage + "%"; handle.style.left = percentage + "%";
         }
-
         if(slider) {
             slider.addEventListener("mousedown", () => isDragging = true);
             window.addEventListener("mouseup", () => isDragging = false);
-            window.addEventListener("mousemove", (e) => {
-                if (!isDragging) return;
-                setSliderPosition(e.clientX);
-            });
-
+            window.addEventListener("mousemove", (e) => { if (!isDragging) return; setSliderPosition(e.clientX); });
             slider.addEventListener("touchstart", () => isDragging = true);
             window.addEventListener("touchend", () => isDragging = false);
-            window.addEventListener("touchmove", (e) => {
-                if (!isDragging) return;
-                setSliderPosition(e.touches[0].clientX);
-            });
+            window.addEventListener("touchmove", (e) => { if (!isDragging) return; setSliderPosition(e.touches[0].clientX); });
         }
     </script>
 </body>
